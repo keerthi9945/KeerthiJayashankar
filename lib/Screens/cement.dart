@@ -1,8 +1,6 @@
-import 'package:e_com_app/Screens/Cart/cart_item.dart';
 import 'package:e_com_app/Screens/Cart/cart_model.dart';
 import 'package:e_com_app/common_appbar.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class CementProduct {
@@ -19,15 +17,21 @@ class CementProduct {
     required this.price,
     required this.originalPrice,
   });
+
+  get discountedPrice => null;
 }
 
 class Cement extends StatefulWidget {
-  const Cement({Key? key}) : super(key: key); // Fix: 'Key' type used correctly
+  const Cement({Key? key}) : super(key: key);
+
+  get cartItems => null;
 
   @override
   _CementState createState() => _CementState();
 
-  void removeItemFromCart(CementProduct cementProduct) {}
+  void removeItemFromCart(product) {}
+
+  void updateQuantity(product, int newQuantity) {}
 }
 
 class _CementState extends State<Cement> {
@@ -84,7 +88,7 @@ class _CementState extends State<Cement> {
     final cart = Provider.of<CartModel>(context); // Access the cart model here
 
     return Scaffold(
-      appBar: const CommonAppBar(title: ''),
+      appBar: const CommonAppBar(title: 'Cement'),
       body: Padding(
         padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
         child: SingleChildScrollView(
@@ -163,8 +167,8 @@ class _CementState extends State<Cement> {
               SizedBox(height: MediaQuery.of(context).size.height * 0.030),
               GridView.builder(
                 shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                physics: const NeverScrollableScrollPhysics(),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   childAspectRatio: 0.55,
                   crossAxisSpacing: 15,
@@ -284,22 +288,19 @@ class _CementState extends State<Cement> {
                             setState(() {
                               isPressedList[index] = !isPressedList[index];
                             });
-                            cart.addItem(CartItem(
-                              product.name,
-                              product.price,
-                            ));
+                            cart.addItem(cementProducts[index]);
 
                             // Show alert dialog
                             showDialog(
                               context: context,
                               builder: (BuildContext context) {
                                 return AlertDialog(
-                                  title: Text("Success"),
-                                  content: Text(
+                                  title: const Text("Success"),
+                                  content: const Text(
                                       "Item added successfully to the cart."),
                                   actions: [
                                     TextButton(
-                                      child: Text("OK"),
+                                      child: const Text("OK"),
                                       onPressed: () {
                                         Navigator.of(context)
                                             .pop(); // Close dialog
@@ -345,11 +346,4 @@ class _CementState extends State<Cement> {
       ),
     );
   }
-}
-
-List<CementProduct> userCart = [];
-
-void RemoveItemFromCart(CementProduct cementproduct) {
-  userCart.remove(cementproduct);
-  //notifyListeners();
 }

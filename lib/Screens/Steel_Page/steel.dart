@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-import '../Cart/cart_item.dart';
+//import '../Cart/cart_item.dart';
 
 class SteelProduct {
   final String name;
@@ -318,10 +318,10 @@ class _SteelState extends State<Steel> {
                             setState(() {
                               isPressedList[index] = !isPressedList[index];
                             });
-                            cart.addItem(CartItem(
-                              product.name,
-                              product.price,
-                            ));
+                            // cart.addItem(CartItem(
+                            //   product.name,
+                            //   product.price,
+                            // ));
                             _showOverlay(context, product.name);
                           },
                           child: Row(

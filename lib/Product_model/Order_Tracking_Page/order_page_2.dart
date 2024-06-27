@@ -1,3 +1,4 @@
+import 'package:e_com_app/common_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -14,73 +15,9 @@ class _OrderScreenPageState extends State<OrderScreenPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios),
-          onPressed: () {
-            Navigator.of(context).pop(); // Handle back action
-          },
-        ),
-        title: Padding(
-          padding:
-              const EdgeInsets.only(left: 0), // Adjust the padding if needed
-          child: CircleAvatar(
-            child: Image.asset('assets/logoo.png'),
-          ),
-        ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.favorite_border),
-            onPressed: () {
-              // Handle favorite action
-            },
-          ),
-          Stack(
-            children: [
-              IconButton(
-                icon: const Icon(
-                  Icons.shopping_bag_outlined,
-                  size: 30,
-                ),
-                onPressed: () {
-                  // Handle add to cart action
-                },
-              ),
-              Positioned(
-                right: 5,
-                top: 5,
-                child: Container(
-                  padding: const EdgeInsets.all(2),
-                  decoration: BoxDecoration(
-                    color: Colors.green, // Green background for the counter
-                    borderRadius: BorderRadius.circular(30), // Circular shape
-                  ),
-                  constraints: const BoxConstraints(
-                    minWidth: 20,
-                    minHeight: 20,
-                  ),
-                  child: Center(
-                    child: Text('2', // Number to be displayed in the counter
-                        style: GoogleFonts.plusJakartaSans(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 12,
-                          color: Colors.white,
-                        )),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.only(right: 20),
-            child: CircleAvatar(
-              child: Image.asset('assets/Menu.png'),
-            ),
-          ),
-        ],
-      ),
+      appBar: CommonAppBar(title: ''),
       body: Padding(
-        padding: const EdgeInsets.only(left: 17, right: 17),
+        padding: const EdgeInsets.only(left: 17, right: 17, bottom: 17),
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -89,6 +26,7 @@ class _OrderScreenPageState extends State<OrderScreenPage> {
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     'Order ID:  #123465667',
@@ -98,6 +36,30 @@ class _OrderScreenPageState extends State<OrderScreenPage> {
                       color: Colors.black,
                     ),
                   ),
+                  SizedBox(width: 65),
+                  Expanded(
+                    child: Container(
+                      height: 40,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(
+                          color: Colors.grey, // Set the border color
+                          width: 2.0, // Set the border width
+                        ),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.description_outlined, color: Colors.grey),
+                          SizedBox(width: 8),
+                          Text(
+                            'GST Invoice',
+                            style: TextStyle(color: Colors.grey),
+                          )
+                        ],
+                      ),
+                    ),
+                  )
                 ],
               ),
               SizedBox(
@@ -458,7 +420,7 @@ class _OrderScreenPageState extends State<OrderScreenPage> {
                             style: TEXT_STYLE.copyWith(
                               fontSize: 12,
                               fontWeight: FontWeight.w500,
-                              color: Colors.black,
+                              color: Color(0xFF667085),
                             ),
                           ),
                           const SizedBox(
@@ -477,7 +439,7 @@ class _OrderScreenPageState extends State<OrderScreenPage> {
                       Row(
                         children: [
                           const Icon(
-                            Icons.traffic,
+                            Icons.category,
                             color: Color(0xFF667085),
                             size: 20,
                           ),
@@ -529,7 +491,7 @@ class _OrderScreenPageState extends State<OrderScreenPage> {
                             style: TEXT_STYLE.copyWith(
                               fontSize: 12,
                               fontWeight: FontWeight.w500,
-                              color: Colors.black,
+                              color: Color(0xFF667085),
                             ),
                           ),
                           const SizedBox(
@@ -556,7 +518,7 @@ class _OrderScreenPageState extends State<OrderScreenPage> {
                             style: TEXT_STYLE.copyWith(
                               fontSize: 12,
                               fontWeight: FontWeight.w500,
-                              color: Colors.black,
+                              color: Color(0xFF667085),
                             ),
                           ),
                           const SizedBox(
@@ -582,12 +544,15 @@ class _OrderScreenPageState extends State<OrderScreenPage> {
                             style: TEXT_STYLE.copyWith(
                               fontSize: 12,
                               fontWeight: FontWeight.w500,
-                              color: Colors.black,
+                              color: Color(0xFF667085),
                             ),
                           ),
                           const SizedBox(
                             width: 85,
                           ),
+                          // Divider(
+                          //   color: Colors.grey,
+                          // ),
                           Text(
                             '₹ 100.00 ',
                             style: TEXT_STYLE.copyWith(
@@ -610,7 +575,7 @@ class _OrderScreenPageState extends State<OrderScreenPage> {
                             style: TEXT_STYLE.copyWith(
                               fontSize: 12,
                               fontWeight: FontWeight.w500,
-                              color: Colors.black,
+                              color: Color(0xFF667085),
                             ),
                           ),
                           const SizedBox(

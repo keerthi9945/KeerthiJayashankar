@@ -1,26 +1,20 @@
 import 'package:e_com_app/Screens/cement.dart';
 import 'package:flutter/material.dart';
 
-class CartItem {
-  final String name;
-  final double price;
-
-  CartItem(
-    this.name,
-    this.price,
-    //  {required CementProduct cementproduct}
-  );
-}
-
 class CartModel extends ChangeNotifier {
-  final List<CartItem> _items = [];
+  final List<CementProduct> _items = [];
 
-  List<CartItem> get items => _items;
+  List<CementProduct> get items => _items;
 
-  int get itemCount => _items.length;
-
-  void addItem(CartItem item) {
-    _items.add(item);
+  void addItem(CementProduct product) {
+    _items.add(product);
     notifyListeners();
   }
+
+  void removeItem(CementProduct product) {
+    _items.remove(product);
+    notifyListeners();
+  }
+
+  int get itemCount => _items.length;
 }
